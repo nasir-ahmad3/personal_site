@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/my_personal_site/static/css/main.769d0a16.css",
-    "main.js": "/my_personal_site/static/js/main.3f474f16.js",
-    "static/media/about.png": "/my_personal_site/static/media/about.d91aac60de40d94b63c1.png",
-    "static/media/header_bg.png": "/my_personal_site/static/media/header_bg.3ea48abd884154acdead.png",
-    "static/media/cv.pdf": "/my_personal_site/static/media/cv.7d2f0d5a5482892c2aa4.pdf",
-    "static/media/Pangram-ExtraBold.otf": "/my_personal_site/static/media/Pangram-ExtraBold.f08b2422d708b45f17fe.otf",
-    "static/media/Pangram-Light.otf": "/my_personal_site/static/media/Pangram-Light.fd72ed3df65b680df230.otf",
-    "static/media/Pangram-Medium.otf": "/my_personal_site/static/media/Pangram-Medium.a8580b7adf5a606cfe9e.otf",
-    "index.html": "/my_personal_site/index.html",
-    "main.769d0a16.css.map": "/my_personal_site/static/css/main.769d0a16.css.map",
-    "main.3f474f16.js.map": "/my_personal_site/static/js/main.3f474f16.js.map"
+    "main.css": "/static/css/main.b2779919.css",
+    "main.js": "/static/js/main.10528bb7.js",
+    "static/media/about.png": "/static/media/about.d91aac60de40d94b63c1.png",
+    "static/media/header_bg.png": "/static/media/header_bg.3ea48abd884154acdead.png",
+    "static/media/cv.pdf": "/static/media/cv.7d2f0d5a5482892c2aa4.pdf",
+    "static/media/Pangram-ExtraBold.otf": "/static/media/Pangram-ExtraBold.f08b2422d708b45f17fe.otf",
+    "static/media/Pangram-Light.otf": "/static/media/Pangram-Light.fd72ed3df65b680df230.otf",
+    "static/media/Pangram-Medium.otf": "/static/media/Pangram-Medium.a8580b7adf5a606cfe9e.otf",
+    "index.html": "/index.html",
+    "main.b2779919.css.map": "/static/css/main.b2779919.css.map",
+    "main.10528bb7.js.map": "/static/js/main.10528bb7.js.map"
   },
   "entrypoints": [
-    "static/css/main.769d0a16.css",
-    "static/js/main.3f474f16.js"
+    "static/css/main.b2779919.css",
+    "static/js/main.10528bb7.js"
   ]
 }
