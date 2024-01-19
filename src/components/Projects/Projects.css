@@ -1,0 +1,199 @@
+
+section.projects{
+	background-color: var(--bg-second-color);
+	padding-top: 50px;
+	padding-bottom: 150px;
+}
+body.light  section.projects{
+	background-color: #eee;
+}
+.container  h1.title{
+	text-align: center;
+	font-size: 65px;
+	letter-spacing: 3px;
+	font-weight: bolder;
+	text-transform: capitalize;
+}
+.container > div.des{
+	font-size: 20px;
+	text-align: center;
+	margin-top: 10px;
+	color: var(--light-font-color);
+	text-transform: capitalize;
+}
+.container  div.des .good{
+	opacity: 0;
+}
+.light .container  div.des{
+	color: #6d6d6d;
+} 
+section.projects  .box-wrapper{
+	columns: 3;
+	column-gap: 15px;
+	margin-top: 90px;
+}
+section.projects  .box-wrapper .box{
+	width: 100%;
+	margin: 15px 0;
+	break-inside: avoid;
+	font-size: 70px;
+	border-radius: 5px;
+	box-shadow: 0px 0px 3px var(--light-font-color);
+	padding-bottom: 1px;
+	background-color: var(--bg-color);
+	position: relative;
+	overflow: hidden;
+}
+section.projects  .box-wrapper .box:before{
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 50%;
+	height: 150%;
+	background-image: linear-gradient(45deg, var(--light-green), var(--light-yellow));
+	transform-origin: center center;
+	transform: translate(-50%, -50%);
+	animation: animate-project-box linear 3s infinite;
+	opacity: 0;
+	transition: all 0.5s;
+}
+section.projects  .box-wrapper .box:hover:before{
+	opacity: 1 !important;
+}
+@keyframes animate-project-box{
+	0%{
+		transform:translate(-50%, -50%) rotate(0deg);
+	}
+	100%{
+		transform:translate(-50%, -50%) rotate(360deg);
+	}
+}
+section.projects  .box-wrapper .box:after{
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 99%;
+	height: 99%;
+	background-color: var(--bg-color);
+	border-radius: 5px;
+}
+.light section.projects  .box-wrapper .box:after{
+	background-color: #fff;
+}
+body.light section.projects  .box-wrapper .box{
+	box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.04);
+	background-color: var(--white);
+}
+section.projects  .box-wrapper .box:nth-child(1){
+	margin-top: 0;
+}
+section.projects  .box-wrapper .box img{
+	width: 99%;
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 20px;
+	padding-top: 0.5%;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	cursor: pointer;
+	position: relative;
+	z-index: 2;
+}
+section.projects  .box-wrapper .box .title{
+	font-size: 23px;
+	padding: 0 20px;
+	margin-bottom: 30px;
+	text-align: center;
+	text-transform: capitalize;
+	position: relative;
+	z-index: 2;
+}
+section.projects  .box-wrapper .box .des{
+	font-size: 16px;
+	padding: 0px 30px;
+	color: var(--white);
+	font-family: panfram;
+	margin-bottom: 50px;
+	overflow: hidden;
+	text-transform: capitalize;
+	z-index: 2;
+	position: relative;
+}
+section.projects  .box-wrapper .box .des a{
+	color: var(--light-font-color);
+	font-weight: bold;
+	font-family: panfram-Bold;
+}
+body.light section.projects  .box-wrapper .box .des{
+	color: gray;
+}
+
+
+.owl-carousel{
+  width: 90vw !important;
+  height: 700px;
+  margin: 0 auto;
+  position: fixed !important;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  z-index: 33 !important;
+  transition: transform 0.5s;
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+.active .owl-carousel{
+	transform: translate(-50%, -50%) scale(1);
+}
+.owl-carousel .item{
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position: center;
+	border-radius: 5px;
+}
+div.owl-item,
+.owl-stage-outer,
+.owl-stage{
+	height: 100%;
+}
+.owl-nav{
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 2;
+}
+.owl-next{
+	position: absolute;
+	left: 50%;
+}
+.owl-prev{
+	margin-left: -30px !important;
+}
+.owl-dots{
+	position: absolute;
+	bottom: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.box-wrapper  .cover{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: #d3d3d305;
+	backdrop-filter: blur(5px);
+	z-index: 20;
+	pointer-events: none;
+	opacity: 0;
+	transition: all 0.5s;
+}
+.box-wrapper  .cover.active{
+	pointer-events: auto;
+	opacity: 1;
+}

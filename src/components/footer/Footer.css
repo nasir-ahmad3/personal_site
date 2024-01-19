@@ -1,0 +1,23 @@
+
+section.footer{
+	background-color: var(--bg-second-color);
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	color: var(--white);
+	text-transform: capitalize;
+	letter-spacing: 1px;
+}
+.light section.footer{
+	background-color: #eee;
+	color: var(--black);
+}
+.light section.footer div svg{
+	fill: var(--black);
+}
+section.footer div svg {
+	fill: #fff;
+}
+.light .info  li  a  span{
+	fill: #fff;
+}

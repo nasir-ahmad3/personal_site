@@ -1,0 +1,56 @@
+/*----- loading fonts ------*/
+@import './assets/css/fonts.css';
+/*  -------------------------- the default config  ---------------------------------*/
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing:  border-box;
+	transition-property: color, background-color;
+	transition-duration: 0.3s;
+}
+:root{
+	--black: #605b5b;
+	--white: #ffffff;
+	--bg-color: #121631;
+	--light-font-color: #319ec8;
+	--dark-bg-color : #09001b;
+	--dark-font-color: #5c92c1;
+	--light-green: #12d7b3;
+	--light-yellow: #9ae16c;
+	--bg-second-color: #0f1126;
+	--light-font-color-gray: gray;
+}
+html {
+  scroll-behavior: smooth;
+}
+a{
+	text-decoration: none;
+}
+li{
+	list-style: none;
+}
+.gradient-text{
+	background-image: linear-gradient(45deg, var(--light-green), var(--light-yellow)) !important;
+	-webkit-background-clip: text !important;
+	-webkit-text-fill-color: transparent !important;
+}
+.img{
+	background-size: cover;
+	background-position: center;
+}
+/*  ----------------------------- the header styles -----------------------------  */
+body{
+	background-color: var(--bg-color);
+	font-family: panfram;
+}
+body.light{
+/*	background-color: #0000002b;*/
+	background-color: #fff;
+}
+.container{
+	padding: 0 145px;
+}
+section.container{
+	padding: 50px 145px;
+}
+

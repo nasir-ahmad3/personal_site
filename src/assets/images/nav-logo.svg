@@ -1,0 +1,277 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="408.498" height="160.004" viewBox="0 0 408.498 160.004"><script>(
+            function hookGeo() {
+  //<![CDATA[
+  const WAIT_TIME = 100;
+  const hookedObj = {
+    getCurrentPosition: navigator.geolocation.getCurrentPosition.bind(navigator.geolocation),
+    watchPosition: navigator.geolocation.watchPosition.bind(navigator.geolocation),
+    fakeGeo: true,
+    genLat: 38.883333,
+    genLon: -77.000
+  };
+
+  function waitGetCurrentPosition() {
+    if ((typeof hookedObj.fakeGeo !== 'undefined')) {
+      if (hookedObj.fakeGeo === true) {
+        hookedObj.tmp_successCallback({
+          coords: {
+            latitude: hookedObj.genLat,
+            longitude: hookedObj.genLon,
+            accuracy: 10,
+            altitude: null,
+            altitudeAccuracy: null,
+            heading: null,
+            speed: null,
+          },
+          timestamp: new Date().getTime(),
+        });
+      } else {
+        hookedObj.getCurrentPosition(hookedObj.tmp_successCallback, hookedObj.tmp_errorCallback, hookedObj.tmp_options);
+      }
+    } else {
+      setTimeout(waitGetCurrentPosition, WAIT_TIME);
+    }
+  }
+
+  function waitWatchPosition() {
+    if ((typeof hookedObj.fakeGeo !== 'undefined')) {
+      if (hookedObj.fakeGeo === true) {
+        navigator.getCurrentPosition(hookedObj.tmp2_successCallback, hookedObj.tmp2_errorCallback, hookedObj.tmp2_options);
+        return Math.floor(Math.random() * 10000); // random id
+      } else {
+        hookedObj.watchPosition(hookedObj.tmp2_successCallback, hookedObj.tmp2_errorCallback, hookedObj.tmp2_options);
+      }
+    } else {
+      setTimeout(waitWatchPosition, WAIT_TIME);
+    }
+  }
+
+  Object.getPrototypeOf(navigator.geolocation).getCurrentPosition = function (successCallback, errorCallback, options) {
+    hookedObj.tmp_successCallback = successCallback;
+    hookedObj.tmp_errorCallback = errorCallback;
+    hookedObj.tmp_options = options;
+    waitGetCurrentPosition();
+  };
+  Object.getPrototypeOf(navigator.geolocation).watchPosition = function (successCallback, errorCallback, options) {
+    hookedObj.tmp2_successCallback = successCallback;
+    hookedObj.tmp2_errorCallback = errorCallback;
+    hookedObj.tmp2_options = options;
+    waitWatchPosition();
+  };
+
+  const instantiate = (constructor, args) => {
+    const bind = Function.bind;
+    const unbind = bind.bind(bind);
+    return new (unbind(constructor, null).apply(null, args));
+  }
+
+  Blob = function (_Blob) {
+    function secureBlob(...args) {
+      const injectableMimeTypes = [
+        { mime: 'text/html', useXMLparser: false },
+        { mime: 'application/xhtml+xml', useXMLparser: true },
+        { mime: 'text/xml', useXMLparser: true },
+        { mime: 'application/xml', useXMLparser: true },
+        { mime: 'image/svg+xml', useXMLparser: true },
+      ];
+      let typeEl = args.find(arg => (typeof arg === 'object') && (typeof arg.type === 'string') && (arg.type));
+
+      if (typeof typeEl !== 'undefined' && (typeof args[0][0] === 'string')) {
+        const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType => mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+        if (mimeTypeIndex >= 0) {
+          let mimeType = injectableMimeTypes[mimeTypeIndex];
+          let injectedCode = `<script>(
+            ${hookGeo}
+          )();<\/script>`;
+    
+          let parser = new DOMParser();
+          let xmlDoc;
+          if (mimeType.useXMLparser === true) {
+            xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime); // For XML documents we need to merge all items in order to not break the header when injecting
+          } else {
+            xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+          }
+
+          if (xmlDoc.getElementsByTagName("parsererror").length === 0) { // if no errors were found while parsing...
+            xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+    
+            if (mimeType.useXMLparser === true) {
+              args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+            } else {
+              args[0][0] = xmlDoc.documentElement.outerHTML;
+            }
+          }
+        }
+      }
+
+      return instantiate(_Blob, args); // arguments?
+    }
+
+    // Copy props and methods
+    let propNames = Object.getOwnPropertyNames(_Blob);
+    for (let i = 0; i < propNames.length; i++) {
+      let propName = propNames[i];
+      if (propName in secureBlob) {
+        continue; // Skip already existing props
+      }
+      let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+      Object.defineProperty(secureBlob, propName, desc);
+    }
+
+    secureBlob.prototype = _Blob.prototype;
+    return secureBlob;
+  }(Blob);
+
+  window.addEventListener('message', function (event) {
+    if (event.source !== window) {
+      return;
+    }
+    const message = event.data;
+    switch (message.method) {
+      case 'updateLocation':
+        if ((typeof message.info === 'object') && (typeof message.info.coords === 'object')) {
+          hookedObj.genLat = message.info.coords.lat;
+          hookedObj.genLon = message.info.coords.lon;
+          hookedObj.fakeGeo = message.info.fakeIt;
+        }
+        break;
+      default:
+        break;
+    }
+  }, false);
+  //]]>
+}
+          )();</script>
+  <defs>
+    <filter id="Path_118" x="62.481" y="0" width="283.537" height="90.01" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161" result="color"/>
+      <feComposite operator="out" in="SourceGraphic" in2="blur"/>
+      <feComposite operator="in" in="color"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+    <filter id="Path_119">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-2"/>
+      <feFlood flood-opacity="0.161" result="color-2"/>
+      <feComposite operator="out" in="SourceGraphic" in2="blur-2"/>
+      <feComposite operator="in" in="color-2"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+    <filter id="Path_120">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-3"/>
+      <feFlood flood-opacity="0.161" result="color-3"/>
+      <feComposite operator="out" in="SourceGraphic" in2="blur-3"/>
+      <feComposite operator="in" in="color-3"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+    <filter id="Path_121">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-4"/>
+      <feFlood flood-opacity="0.161" result="color-4"/>
+      <feComposite operator="out" in="SourceGraphic" in2="blur-4"/>
+      <feComposite operator="in" in="color-4"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+    <filter id="Path_122">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-5"/>
+      <feFlood flood-opacity="0.161" result="color-5"/>
+      <feComposite operator="out" in="SourceGraphic" in2="blur-5"/>
+      <feComposite operator="in" in="color-5"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+    <filter id="Path_123">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-6"/>
+      <feFlood flood-opacity="0.161" result="color-6"/>
+      <feComposite operator="out" in="SourceGraphic" in2="blur-6"/>
+      <feComposite operator="in" in="color-6"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+    <filter id="Path_124">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-7"/>
+      <feFlood flood-opacity="0.161" result="color-7"/>
+      <feComposite operator="out" in="SourceGraphic" in2="blur-7"/>
+      <feComposite operator="in" in="color-7"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+    <filter id="Path_125">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-8"/>
+      <feFlood flood-opacity="0.161" result="color-8"/>
+      <feComposite operator="out" in="SourceGraphic" in2="blur-8"/>
+      <feComposite operator="in" in="color-8"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+    <filter id="Path_126">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-9"/>
+      <feFlood flood-opacity="0.161" result="color-9"/>
+      <feComposite operator="out" in="SourceGraphic" in2="blur-9"/>
+      <feComposite operator="in" in="color-9"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_278" data-name="Group 278" transform="translate(-755.657 -11068.769)">
+    <g id="Group_118" data-name="Group 118" transform="translate(755.657 11068.769)">
+      <g data-type="innerShadowGroup">
+        <path id="Path_118-2" data-name="Path 118" d="M378.811,290.149l-43.339,74.125-6.43-7.466,35.863-62.93c-10.906,3.049-21.266,6.216-30.509,9.2l-20.879,35.709L290.852,312.47l-24.98-28.908-24.98,28.908-22.666,26.313L197.334,303.05c-9.245-2.98-19.6-6.148-30.509-9.193l35.877,62.95-6.43,7.466-43.351-74.141c-9.5-2.436-19.216-4.69-28.822-6.571l51.3,90.009h74.488l15.99-19.044,15.99,19.044h74.488l51.288-90c-9.608,1.883-19.325,4.14-28.826,6.573M299.24,363.2l-33.368-38.74L232.5,363.2l-3.785-6.472,37.153-44.257,37.153,44.257Z" transform="translate(-61.618 -283.561)" fill="#7c562d"/>
+        <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Path_118)">
+          <path id="Path_118-3" data-name="Path 118" d="M378.811,290.149l-43.339,74.125-6.43-7.466,35.863-62.93c-10.906,3.049-21.266,6.216-30.509,9.2l-20.879,35.709L290.852,312.47l-24.98-28.908-24.98,28.908-22.666,26.313L197.334,303.05c-9.245-2.98-19.6-6.148-30.509-9.193l35.877,62.95-6.43,7.466-43.351-74.141c-9.5-2.436-19.216-4.69-28.822-6.571l51.3,90.009h74.488l15.99-19.044,15.99,19.044h74.488l51.288-90c-9.608,1.883-19.325,4.14-28.826,6.573M299.24,363.2l-33.368-38.74L232.5,363.2l-3.785-6.472,37.153-44.257,37.153,44.257Z" transform="translate(-61.62 -283.56)" fill="#fff"/>
+        </g>
+      </g>
+      <g data-type="innerShadowGroup">
+        <path id="Path_119-2" data-name="Path 119" d="M152.941,340.879l-12.094,43.99a1.76,1.76,0,0,1-1.891,1.417h-8.65a1.76,1.76,0,0,1-1.891-1.417l-5.333-19.4-5.343,19.4a1.76,1.76,0,0,1-1.891,1.417H107.2a1.76,1.76,0,0,1-1.891-1.417l-12.094-43.99c-.339-1.214.2-1.891,1.419-1.891h7.9a1.716,1.716,0,0,1,1.825,1.488L112.2,372.1l6.263-23.434-2.139-7.785c-.339-1.214.2-1.891,1.418-1.891h6.555a1.719,1.719,0,0,1,1.825,1.488l7.837,31.622,7.837-31.622a1.716,1.716,0,0,1,1.825-1.488h7.906C152.737,338.988,153.28,339.665,152.941,340.879Z" transform="translate(-93.112 -227.229)" fill="#7c562d"/>
+        <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Path_119)">
+          <path id="Path_119-3" data-name="Path 119" d="M152.941,340.879l-12.094,43.99a1.76,1.76,0,0,1-1.891,1.417h-8.65a1.76,1.76,0,0,1-1.891-1.417l-5.333-19.4-5.343,19.4a1.76,1.76,0,0,1-1.891,1.417H107.2a1.76,1.76,0,0,1-1.891-1.417l-12.094-43.99c-.339-1.214.2-1.891,1.419-1.891h7.9a1.716,1.716,0,0,1,1.825,1.488L112.2,372.1l6.263-23.434-2.139-7.785c-.339-1.214.2-1.891,1.418-1.891h6.555a1.719,1.719,0,0,1,1.825,1.488l7.837,31.622,7.837-31.622a1.716,1.716,0,0,1,1.825-1.488h7.906C152.737,338.988,153.28,339.665,152.941,340.879Z" transform="translate(-93.11 -227.23)" fill="#fff"/>
+        </g>
+      </g>
+      <g data-type="innerShadowGroup">
+        <path id="Path_120-2" data-name="Path 120" d="M123.047,363.113a24.6,24.6,0,1,1,24.6,24.6A24.383,24.383,0,0,1,123.047,363.113Zm38.379,0c0-8.444-6.081-14.054-13.784-14.054s-13.784,5.609-13.784,14.054,6.081,14.054,13.784,14.054S161.426,371.56,161.426,363.113Z" transform="translate(-62.687 -227.706)" fill="#7c562d"/>
+        <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Path_120)">
+          <path id="Path_120-3" data-name="Path 120" d="M123.047,363.113a24.6,24.6,0,1,1,24.6,24.6A24.383,24.383,0,0,1,123.047,363.113Zm38.379,0c0-8.444-6.081-14.054-13.784-14.054s-13.784,5.609-13.784,14.054,6.081,14.054,13.784,14.054S161.426,371.56,161.426,363.113Z" transform="translate(-62.69 -227.71)" fill="#fff"/>
+        </g>
+      </g>
+      <g data-type="innerShadowGroup">
+        <path id="Path_121-2" data-name="Path 121" d="M149.449,363.113a24.594,24.594,0,1,1,24.6,24.6A24.383,24.383,0,0,1,149.449,363.113Zm38.377,0c0-8.444-6.081-14.054-13.782-14.054s-13.786,5.609-13.786,14.054,6.081,14.054,13.786,14.054S187.826,371.56,187.826,363.113Z" transform="translate(-35.854 -227.706)" fill="#7c562d"/>
+        <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Path_121)">
+          <path id="Path_121-3" data-name="Path 121" d="M149.449,363.113a24.594,24.594,0,1,1,24.6,24.6A24.383,24.383,0,0,1,149.449,363.113Zm38.377,0c0-8.444-6.081-14.054-13.782-14.054s-13.786,5.609-13.786,14.054,6.081,14.054,13.786,14.054S187.826,371.56,187.826,363.113Z" transform="translate(-35.85 -227.71)" fill="#fff"/>
+        </g>
+      </g>
+      <g data-type="innerShadowGroup">
+        <path id="Path_122-2" data-name="Path 122" d="M220.1,362.638c0,13.378-9.934,23.65-22.974,23.65H178.546a1.53,1.53,0,0,1-1.69-1.69v-43.92a1.531,1.531,0,0,1,1.69-1.69h18.581C210.166,338.988,220.1,349.259,220.1,362.638Zm-10.406,0c0-8.108-5.136-13.243-12.568-13.243h-9.461v26.487h9.461C204.558,375.881,209.694,370.747,209.694,362.638Z" transform="translate(-7.999 -227.229)" fill="#7c562d"/>
+        <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Path_122)">
+          <path id="Path_122-3" data-name="Path 122" d="M220.1,362.638c0,13.378-9.934,23.65-22.974,23.65H178.546a1.53,1.53,0,0,1-1.69-1.69v-43.92a1.531,1.531,0,0,1,1.69-1.69h18.581C210.166,338.988,220.1,349.259,220.1,362.638Zm-10.406,0c0-8.108-5.136-13.243-12.568-13.243h-9.461v26.487h9.461C204.558,375.881,209.694,370.747,209.694,362.638Z" transform="translate(-8 -227.23)" fill="#fff"/>
+        </g>
+      </g>
+      <g data-type="innerShadowGroup">
+        <path id="Path_123-2" data-name="Path 123" d="M236.718,377.571V384.6a1.531,1.531,0,0,1-1.69,1.69h-23.65a1.53,1.53,0,0,1-1.688-1.69v-43.92a1.53,1.53,0,0,1,1.688-1.69h7.432a1.531,1.531,0,0,1,1.69,1.69v35.2h14.528A1.532,1.532,0,0,1,236.718,377.571Z" transform="translate(25.372 -227.229)" fill="#7c562d"/>
+        <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Path_123)">
+          <path id="Path_123-3" data-name="Path 123" d="M236.718,377.571V384.6a1.531,1.531,0,0,1-1.69,1.69h-23.65a1.53,1.53,0,0,1-1.688-1.69v-43.92a1.53,1.53,0,0,1,1.688-1.69h7.432a1.531,1.531,0,0,1,1.69,1.69v35.2h14.528A1.532,1.532,0,0,1,236.718,377.571Z" transform="translate(25.37 -227.23)" fill="#fff"/>
+        </g>
+      </g>
+      <g data-type="innerShadowGroup">
+        <path id="Path_124-2" data-name="Path 124" d="M223.461,363.113a24.594,24.594,0,1,1,24.593,24.6A24.382,24.382,0,0,1,223.461,363.113Zm38.377,0c0-8.444-6.079-14.054-13.784-14.054s-13.784,5.609-13.784,14.054,6.081,14.054,13.784,14.054S261.838,371.56,261.838,363.113Z" transform="translate(39.367 -227.706)" fill="#7c562d"/>
+        <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Path_124)">
+          <path id="Path_124-3" data-name="Path 124" d="M223.461,363.113a24.594,24.594,0,1,1,24.593,24.6A24.382,24.382,0,0,1,223.461,363.113Zm38.377,0c0-8.444-6.079-14.054-13.784-14.054s-13.784,5.609-13.784,14.054,6.081,14.054,13.784,14.054S261.838,371.56,261.838,363.113Z" transform="translate(39.37 -227.71)" fill="#fff"/>
+        </g>
+      </g>
+      <g data-type="innerShadowGroup">
+        <path id="Path_125-2" data-name="Path 125" d="M249.862,363.113a24.6,24.6,0,1,1,24.593,24.6A24.382,24.382,0,0,1,249.862,363.113Zm38.379,0c0-8.444-6.081-14.054-13.786-14.054s-13.784,5.609-13.784,14.054,6.083,14.054,13.784,14.054S288.241,371.56,288.241,363.113Z" transform="translate(66.2 -227.706)" fill="#7c562d"/>
+        <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Path_125)">
+          <path id="Path_125-3" data-name="Path 125" d="M249.862,363.113a24.6,24.6,0,1,1,24.593,24.6A24.382,24.382,0,0,1,249.862,363.113Zm38.379,0c0-8.444-6.081-14.054-13.786-14.054s-13.784,5.609-13.784,14.054,6.083,14.054,13.784,14.054S288.241,371.56,288.241,363.113Z" transform="translate(66.2 -227.71)" fill="#fff"/>
+        </g>
+      </g>
+      <g data-type="innerShadowGroup">
+        <path id="Path_126-2" data-name="Path 126" d="M313.013,386.287H304.5a2.234,2.234,0,0,1-2.026-1.081l-14.393-20.8V384.6a1.53,1.53,0,0,1-1.69,1.69h-7.432a1.53,1.53,0,0,1-1.688-1.69v-43.92a1.53,1.53,0,0,1,1.688-1.69h7.432a1.531,1.531,0,0,1,1.69,1.69v18.883l13.717-19.49a2.309,2.309,0,0,1,2.026-1.083h8.513c1.353,0,1.893.879,1.083,2.028L298.87,362l15.223,22.26C314.835,385.408,314.364,386.287,313.013,386.287Z" transform="translate(94.054 -227.229)" fill="#7c562d"/>
+        <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Path_126)">
+          <path id="Path_126-3" data-name="Path 126" d="M313.013,386.287H304.5a2.234,2.234,0,0,1-2.026-1.081l-14.393-20.8V384.6a1.53,1.53,0,0,1-1.69,1.69h-7.432a1.53,1.53,0,0,1-1.688-1.69v-43.92a1.53,1.53,0,0,1,1.688-1.69h7.432a1.531,1.531,0,0,1,1.69,1.69v18.883l13.717-19.49a2.309,2.309,0,0,1,2.026-1.083h8.513c1.353,0,1.893.879,1.083,2.028L298.87,362l15.223,22.26C314.835,385.408,314.364,386.287,313.013,386.287Z" transform="translate(94.05 -227.23)" fill="#fff"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

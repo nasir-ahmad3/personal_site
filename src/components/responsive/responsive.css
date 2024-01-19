@@ -1,0 +1,420 @@
+
+@media (max-width: 1680px){
+	.container{
+		max-width: 1550px;
+		margin: 0 auto;
+		padding: 50px;	
+	}
+	section.container{
+		padding: 50px;	
+	}
+	section.aboutme .about-box{
+		margin: 50px 20px;
+	}
+	section.aboutme .description  div.des {
+  	font-size: 16px;
+	}
+	section.blog .blog-wrapper .blog {
+  	margin: 50px 20px;
+	}
+}
+@media (max-width: 1400px){
+	.siteHeader{
+		height: 700px;
+	}
+	.siteHeader  .right{
+		transform: scale(0.7);
+	}
+	.siteHeader  .left .experince{
+		font-size: 12px;
+	}
+	.siteHeader  .left .title{
+		font-size: 27px;
+		line-height: 35px;
+	}
+	.siteHeader  .left .title div span{
+		font-size: 45px;
+	}
+	.siteHeader  .left .title::after,
+	.siteHeader  .left .title::before{
+		top: 85px;
+	}
+	.siteHeader  .left .content{
+		letter-spacing: 0;
+		font-size: 14px;
+	}
+	.container  h1.title{
+		font-size: 50px;
+	}
+	.container  p.des{
+		font-size: 16px;
+	}
+	section.projects  .box-wrapper .box .title{
+		font-size: 20px;
+	}
+	section.projects  .box-wrapper .box .des{
+		font-size: 15px;
+	}
+	section.projects  .box-wrapper .box .des{
+		padding: 0 20px;
+	}
+	.owl-carousel{
+  	height: 500px;
+  }
+  section.blog .blog-wrapper .blog .title{
+  	font-size: 20px;
+  }
+  section.blog .blog-wrapper .blog .write_by{
+  	font-size: 12px;
+  }
+  section.blog .blog-wrapper .blog{
+  	font-size: 15px;
+  }
+  section.aboutme .description  div.des{
+  	letter-spacing: 0;
+  }section.contactme  .form-wrapper p.main-sub-title{
+  	font-size: 15px;
+  	margin: 20px 0;
+  }
+  section.contactme .form-wrapper  form  div.input-container label{
+  	font-size: 18px;
+  }
+  section.contactme .form-wrapper  form  div.input-container textarea, section.contactme .form-wrapper  form  div.input-container input{
+  	font-size: 15px;
+  }
+  section.contactme ul.info li a span svg{
+  	width: 20px;
+  	height: 20px;
+  }
+  section.contactme ul.info li a span.mysvg{
+  	width: 30px;
+  	height: 30px;
+  }
+  section.footer,
+  section.contactme ul.info li a{
+  	font-size: 14px;
+  	letter-spacing: 0;
+  }
+  section.contactme ul.info li a span.mysvg{
+  	margin-right: 5px;
+  }
+}
+@media (max-width: 1200px){
+	nav .right  ul a{
+		margin: 0 10px;
+	}
+	nav .right  ul{
+		font-size: 15px;
+	}
+	nav .right  ul a::after{
+		width: 102%;
+		height: 2px;
+		border-radius: 10px;
+	}
+	nav .left svg{
+		width: 75px;
+	}
+	.siteHeader  .right{
+		transform: scale(0.6);
+	}
+	.siteHeader  .left .title{
+		transform: scale(0.9);
+		transform-origin: left;
+	}
+	.siteHeader  .left .content{
+		font-size: 12px;
+	}
+	.siteHeader  .left .experince {
+	  font-size: 10px;
+	  letter-spacing: 3px;
+	}
+	.container  h1.title {
+		font-size: 40px;
+	}
+	.container  p.des {
+	  font-size: 15px;
+	}
+	section.projects  .box-wrapper .box .title {
+  	font-size: 15px;
+  	margin-bottom: 15px;
+	}
+	section.projects  .box-wrapper .box .des {
+	  padding: 0px 15px;
+	}
+	section.projects  .box-wrapper .box .des {
+	  font-size: 10px;
+	  margin-bottom: 25px;
+	}
+	section.services  .services_container li .des{
+		font-size: 12px;
+	}
+	section.services  .services_container li .title {
+	  font-size: 20px;
+	  margin: 5px;
+	}
+	section.services  .services_container{
+		margin-bottom: 20px;
+	}
+	section.blog .blog-wrapper .blog .img{
+		height: 140px;
+	}
+	section.blog .blog-wrapper .blog .title {
+	  font-size: 16px;
+	}
+	section.blog .blog-wrapper .blog .write_by {
+	  font-size: 11px;
+	}
+	section.blog .blog-wrapper .blog {
+	  font-size: 12px;
+	}
+	section.aboutme .about-box .img-container{
+		transform: scale(0.8);
+	}
+	section.aboutme .about-box .title {
+  	font-size: 20px;
+  }
+  section.aboutme .about-box .des {
+	  font-size: 11px;
+	  padding: 0px;
+	}
+	section.aboutme .description  div.des {
+  	font-size: 13px;
+	}
+	section.aboutme .description  div.vector::before{
+		width: 260px;
+		height: 260px;
+	}
+	section.aboutme .description  div.vector{
+		width: 45%;
+	}
+	section.customer-feedback .box-wrapper .box{
+		width: 250px;
+		height: 250px;
+	}
+	section.customer-feedback .box-wrapper .box .img{
+		width: 70px;
+		height: 70px;
+		transform: translateY(-35px);
+	}
+	section.customer-feedback .box-wrapper .box .title{
+		margin-top: -30px;
+		font-size: 18px;
+	}
+	section.customer-feedback .box-wrapper .box .comma svg{
+		width: 14px;
+		height: 10px;
+	}
+	section.customer-feedback .box-wrapper .box .des{
+		font-size: 12px;
+	}
+	section.customer-feedback .box-wrapper .box {
+	  box-shadow: 25px -25px 0px rgba(170, 170, 170, 0.1);
+	  margin-bottom: 100px;
+	}
+}	
+@media (max-width: 992px){
+	.siteHeader{
+		height: 600px;
+	}
+	.siteHeader  .right {
+	  transform: scale(0.5) translateX(150px);
+	}
+	.siteHeader  .left .title{
+		transform: scale(0.7);
+		margin-bottom: 30px;
+	}
+	.siteHeader  .left .content{
+		font-size: 10px;
+	}
+	.siteHeader  .left .experince{
+		margin-bottom: 15px;
+		font-size: 9px;
+		letter-spacing: 2px;
+	}
+	.container  h1.title{
+		font-size: 35px;
+	}
+	.container  p.des{
+		font-size: 12px;
+	}
+	section.projects  .box-wrapper{
+		columns: 2;
+	}
+	section.customer-feedback .box-wrapper,
+	section.aboutme .about-box-wrapper,
+	section.blog .blog-wrapper,
+	section.services  .services_container{
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		align-items: center;
+		justify-content: center;
+	}
+	section.aboutme .about-box-wrapper{
+		margin: 20px 50px;
+	}
+	section.aboutme .about-box{
+		margin: 20px 90px;
+	}
+	section.aboutme .about-box:nth-child(2) {
+  	margin-right: 0;
+	}
+	section.aboutme .about-box:nth-child(3){
+		margin-left: 0;
+	}
+	section.aboutme .description{
+		flex-direction: row-reverse;
+	}
+	section.aboutme .description  div.vector{
+		display: none;
+	}
+	section.aboutme .description  div.des{
+		width: 100%;
+	}
+	section.contactme .form-wrapper{
+		padding: 50px 30px;
+	}
+	section.contactme .form-wrapper  form  div.input-container textarea, section.contactme .form-wrapper  form  div.input-container input{
+		height: 50px;
+	}
+	section.contactme .form-wrapper  form  button{
+		transform: scale(0.5);
+	}
+	section.projects  .box-wrapper .box .des{
+		font-size: 12px;
+	}
+	#message{
+		height: 200px;
+	}
+}
+@media (max-width: 768px){
+	nav{
+		display: flex;
+		align-items: flex-start !important;
+		transition: all 0.5s;
+		transition-delay: 0.5s;
+		height: 80px !important;
+		padding: 20px !important;
+		padding-top: 35px !important;
+	}
+	.siteHeader,
+	.siteHeader > div {
+	  height: 550px;
+	}
+	nav.active{
+		transition-delay: 0s;
+		height: 100vh !important;
+	}
+	nav .left {
+	  margin-top: -15px;
+	}
+	nav .right{
+		display: flex;
+		flex-direction: column;
+		position: relative;
+	}
+	nav .right .btn{
+		display: block;
+	  margin-top: -15px;
+	} 
+	nav .right ul{
+		flex-direction: column;
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		text-align: center;
+		opacity: 0;
+		transition: all 0.5s;
+		transition-delay: 0s;
+	}
+	nav.active .right ul{
+		opacity: 1;
+		transition-delay: 0.5s;
+	}
+	nav .right ul ol,
+	nav .right ul li{
+		margin: 5px;
+	}
+	nav .right ul a{
+		font-size: 20px;
+	}
+	.siteHeader  .right{
+		display: none;
+	}
+	.siteHeader  .left{
+		width: 100%;
+	}
+	section.projects  .box-wrapper {
+	  columns: 1;
+	}
+	section.customer-feedback .box-wrapper,
+	section.aboutme .about-box-wrapper,
+	section.blog .blog-wrapper,
+	section.services  .services_container{
+		display: flex;
+		flex-direction: column;
+		grid-template-columns: repeat(1, 1fr);
+		align-items: center;
+		justify-content: center;
+	}
+	section.aboutme .about-box{
+		margin: 20px auto !important;
+		width: 200px;
+	}
+	section.contactme .form-wrapper {
+	  padding: 50px 30px;
+	}
+	html body section#contactme.contactme.container{
+		padding: 0;
+	}
+	div.input-container label {
+	  font-size: 14px !important;
+	}
+	section.contactme .form-wrapper  form  div.input-container textarea, section.contactme .form-wrapper  form  div.input-container input{
+		height: 40px;
+		font-size: 11px;
+	}
+	section.contactme .form-wrapper  form  button{
+		transform: scale(0.5) !important;
+		transform-origin: left !important;
+	}
+	section.contactme ul.info{
+		flex-direction: column;
+		width: 100%;
+		align-items: flex-start;
+	}
+	section.contactme ul.info li{
+		margin: 10px 30px;
+	}
+	section.footer{
+		font-size: 11px;
+		padding-top:30px;	
+		padding-bottom:30px;	
+	}
+    .container > div.des{
+        font-size: 15px;
+    }
+}
+@media (max-width: 480px){
+    #contactme > h1:nth-child(1){
+        margin-top: 50px;
+    }
+	.container{
+		padding: 50px 20px;
+	}
+	section.container {
+		padding: 50px 20px;
+	}
+	section.contactme .form-wrapper  form  div.input-container:first-child {
+  	flex-direction: column;
+	}
+	.last_name {
+	  margin-left: 0px;
+	}
+	section.contactme .form-wrapper  form  div.input-container  div{
+		width: 100% !important;
+	}
+    .container > div.des{
+        font-size: 13px;
+    }
+}

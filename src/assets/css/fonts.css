@@ -1,0 +1,12 @@
+@font-face{
+	font-family: panfram;
+	src: url('../fonts/Pangram-Medium.otf');
+}
+@font-face{
+	font-family: panfram-bold;
+	src: url('../fonts/Pangram-ExtraBold.otf');
+}
+@font-face{
+	font-family: Pangram-Light;
+	src: url('../fonts/Pangram-Light.otf');
+}

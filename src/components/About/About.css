@@ -1,0 +1,109 @@
+
+section.aboutme .about-box-wrapper{
+	display: flex;
+	margin-top: 20px;
+}
+section.aboutme .about-box{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: 50px;
+	text-align: center;
+	text-transform: capitalize;
+	color: var(--white);
+}
+.light section.aboutme .about-box{
+	color: var(--black);
+}
+section.aboutme .about-box:nth-child(1){
+	margin-left: 0;
+}
+section.aboutme .about-box:last-child{
+	margin-right: 0;
+}
+section.aboutme .about-box .img-container{
+	background-image: linear-gradient(45deg, var(--light-green), var(--light-yellow)) !important;
+	padding: 15px;
+	border-radius: 10px;
+	box-shadow: 15px -15px 0px rgba(0, 0, 0, 0.05);
+}
+section.aboutme .about-box .img{
+	width: 70px;
+	height: 70px;
+}
+section.aboutme .about-box .title{
+	font-size: 30px;
+	margin: 5px 0;
+}
+section.aboutme .about-box .des{
+	font-size: 14px;
+	padding: 0 20px;
+}
+section.aboutme .description{
+	display: flex;
+	margin: 100px 0;
+}
+section.aboutme .description  div.vector{
+	width: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+section.aboutme .description  div.vector:before{
+	content: '';
+	position: absolute;
+	bottom: -50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 350px;
+	height: 350px;
+	border-radius: 5px;
+	background-color: var(--bg-color);
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 1.0);
+}
+.light section.aboutme .description  div.vector:before{
+	background-color: #a8a8a859;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+
+}
+section.aboutme .description  div.vector img{
+	width: 50%;
+	filter: drop-shadow(0px 0px 5px #4444dd);
+	transform: translate(50%, -10%);
+}
+section.aboutme .description  div.des{
+	width: 50%;
+	font-size: 19px;
+	text-transform: capitalize;
+	letter-spacing: 1px;
+    text-align: left;
+}
+section.aboutme .description  div.des .main{
+	color: var(--white);
+}
+.light section.aboutme .description  div.des .main{
+	color: var(--black);
+}
+section.aboutme .description  div.des .more{
+	color: #aaa;
+	margin: 50px 0;
+}
+section.aboutme .description .my-cv{
+	display: inline-block;
+	animation: animate_my_cv linear infinite 2s;
+	transform: scale(1.1);
+	transform-origin: 50% 50%;
+}
+@keyframes animate_my_cv{
+	0%{
+		transform: scale(1);
+	}
+	50%{
+		transform: scale(1.2);
+	}
+	100%{
+		transform: scale(1);
+	}
+}
